@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link rel="stylesheet" href="../css/novo.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <header>
+        <div>
+            <section>
+                <nav>
+                    <ul class = "ulNav">
+                        <li class = "img"><a href="index.html"><img src = "../img/home.png" height="42" width="42"></a></li>
+                        <li class = "img"><a href="blog.html"><img src = "../img/blog.png" height="42" width="42"></a></li>
+                        <li class = "img"><a href="compras.html"><img src = "../img/carrinho-de-compras.png" height="42" width="42"></a></li>
+                        <li class = "img"><a href="livros.html"><img src = "../img/livro.png" height="42" width="42"></a></li>
+                          
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </header>
+    <body>
+		
+		<div id="myDIV" class="header">
+		  <h2 style="margin:5px">Livros para Ler</h2>
+		  <input type="text" id="myInput" placeholder="Insira na lista...">
+		  <span onclick="newElement()" class="addBtn">Adicionar</span>
+		</div>
+		
+		<ul id="myUL">
+          <li class="checked">Harry Potter e a Pedra Filosofal</li>
+		  <li>O Silmarillion</li>
+		  <li>Percy Jackson e o Ladrão de Raios</li>
+		  <li>A Guerra dos Tronos</li>
+		  <li>As Crônicas de Nárnia: O Sobrinho do Mago</li>
+		</ul>
+		
+		<script>
+		// Cria um botão "excluir" e insere a cada item da lista
+		var myNodelist = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < myNodelist.length; i++) {
+		  var span = document.createElement("SPAN");
+		  var txt = document.createTextNode("\u00D7");
+		  span.className = "close";
+		  span.appendChild(txt);
+		  myNodelist[i].appendChild(span);
+		}
+		
+		// Clique em um botão excluir para excluir o item atual da lista
+		var close = document.getElementsByClassName("close");
+		var i;
+		for (i = 0; i < close.length; i++) {
+		  close[i].onclick = function() {
+			var div = this.parentElement;
+			div.style.display = "none";
+		  }
+		}
+		
+		//  Adiciona um símbolo "verificado" ao clicar em um item da lista
+		var list = document.querySelector('ul');
+		list.addEventListener('click', function(ev) {
+		  if (ev.target.tagName === 'LI') {
+			ev.target.classList.toggle('checked');
+		  }
+		}, false);
+		
+		// Crie um novo item da lista ao clicar no botão "Adicionar"
+		function newElement() {
+		  var li = document.createElement("li");
+		  var inputValue = document.getElementById("myInput").value;
+		  var t = document.createTextNode(inputValue);
+		  li.appendChild(t);
+		  if (inputValue === '') {
+			alert("Você deve escrever alguma coisa!");
+		  } else {
+			document.getElementById("myUL").appendChild(li);
+		  }
+		  document.getElementById("myInput").value = "";
+		
+		  var span = document.createElement("SPAN");
+		  var txt = document.createTextNode("\u00D7");
+		  span.className = "close";
+		  span.appendChild(txt);
+		  li.appendChild(span);
+		
+		  for (i = 0; i < close.length; i++) {
+			close[i].onclick = function() {
+			  var div = this.parentElement;
+			  div.style.display = "none";
+			}
+		  }
+		}
+		</script>
+		
+		</body>
+		</html>
+
+		
